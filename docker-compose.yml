@@ -14,5 +14,6 @@ services:
       - VIRTUAL_HOST=$VIRTUAL_HOST
 
 networks:
-    nginx-proxy:
-        external: true
+  default:
+    name: nginx-proxy
+    external: true
