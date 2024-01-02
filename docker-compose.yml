@@ -1,18 +1,21 @@
-version: '3.3'
+version: "3.3"
 services:
   phpmyadmin:
     container_name: phpmyadmin
-    image: 'phpmyadmin/phpmyadmin:latest'
+    image: "phpmyadmin/phpmyadmin:latest"
     restart: always
     expose:
       - 80
     volumes:
-      - ./.docker/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+      - /etc/localtime:/etc/localtime:ro
+      - ./.docker/config.user.inc.php.dist:/etc/phpmyadmin/config.user.inc.php
     environment:
       - PMA_HOST=$PMA_HOST
       - UPLOAD_LIMIT=256M
       - VIRTUAL_HOST=$VIRTUAL_HOST
+    networks:
+      - nginx-proxy
 
 networks:
-    nginx-proxy:
-        external: true
+  nginx-proxy:
+    external: true

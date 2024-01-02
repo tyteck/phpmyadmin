@@ -1,21 +1,6 @@
 <?php
+$loginValidity = 86400;
+ini_set('session.gc_maxlifetime', $loginValidity);
 
 $cfg['Confirm'] = false;
-$cfg['LoginCookieValidity'] = 28800;
-
-// add you servers here
-$phpMyAdminServers = [
-    [
-        "host" => "localhost",
-        "user" => "username",
-        "pass" => "password",
-    ],
-];
-
-foreach ($phpMyAdminServers as $server) {
-    $i++;
-    $cfg['Servers'][$i]['host'] = $server['host'];
-    $cfg['Servers'][$i]['user'] = $server['user'];
-    $cfg['Servers'][$i]['password'] = $server['pass'];
-    $cfg['Servers'][$i]['auth_type'] = 'config'; // keep it as config
-}
+$cfg['LoginCookieValidity'] = $loginValidity;
